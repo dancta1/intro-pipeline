@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'golang:1.10.1-alpine'
+      label 'docker-cloud'
+    }
+    
+  }
   stages {
     stage('Say Hello') {
       parallel {
@@ -11,6 +17,7 @@ pipeline {
         stage('Say More Hello') {
           steps {
             echo 'Say More Hello'
+            sh 'java -version'
             sh 'go version'
           }
         }
