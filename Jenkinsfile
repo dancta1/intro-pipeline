@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  libraries {
+    lib("SharedLibs")
+  }
   stages {
     stage('Say Hello') {
       parallel {
@@ -10,6 +13,11 @@ pipeline {
             echo "${TEST_USER_PSW}"
           }
         }
+        stage('Shared Lib') {
+         steps {
+             helloWorld("Jenkins")
+         }
+      }
         stage('Say More Hello') {
           steps {
             echo 'Say More Hello'
