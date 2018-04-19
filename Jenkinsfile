@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'jdk9'
-  }
+  agent any
   stages {
     stage('Say Hello') {
       parallel {
@@ -13,7 +11,7 @@ pipeline {
         stage('Say More Hello') {
           steps {
             echo 'Say More Hello'
-            sh 'java -version'
+            sh 'go version'
           }
         }
       }
